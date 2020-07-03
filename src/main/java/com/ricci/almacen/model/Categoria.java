@@ -5,19 +5,24 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="categoria")
 public class Categoria implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name="id_categoria")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -27,7 +32,10 @@ public class Categoria implements Serializable{
 	private String nombreCategoria;
 	
 	@OneToMany(mappedBy="categoria")
-//	@JoinColumn(name="id_producto")
+	//@JoinColumn(name="id_categoria")
+
+	
+@JsonIgnore
 	private Set<Producto> productos;
 	
 	
@@ -38,18 +46,18 @@ public class Categoria implements Serializable{
 	/**
 	 * @return the producto
 	 */
-//	public Set<Producto> getProducto() {
-//		return producto;
-//	}
-//
-//
-//
-//	/**
-//	 * @param producto the producto to set
-//	 */
-//	public void setProducto(Set<Producto> producto) {
-//		this.producto = producto;
-//	}
+	public Set<Producto> getProductos() {
+		return productos;
+	}
+
+
+
+	/**
+	 * @param producto the producto to set
+	 */
+	public void setProducto(Set<Producto> productos) {
+		this.productos = productos;
+	}
 
 
 

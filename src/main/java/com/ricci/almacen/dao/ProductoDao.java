@@ -29,8 +29,8 @@ public interface ProductoDao {
 
 //	TeacherSocialMedia findSocialMediaByIdAndName(Long idSocialMedia, String nickname);
 //	
-//	TeacherSocialMedia findSocialMediaByIdTeacherAndIdSocialMedia(Long idTeacher, Long idSocialMedia);
-
-	//List<Producto> findByIdCategoria(Long idCategoria);
+//	Producto findProductoByIdCategoriaAndIdCategoria(Long idPorducto, Long idCategoria);
+//
+     List<Producto> findByIdCategoria(Long idCategoria);
 
 }

@@ -41,6 +41,7 @@ public class Producto implements Serializable{
 
 	@ManyToOne(optional=true,fetch=FetchType.EAGER)
 	@JoinColumn(name="id_categoria")
+//	@JsonIgnore
 	private Categoria categoria;
 	
 
@@ -66,9 +67,9 @@ public Producto(Double precioProducto, String fotoProducto, String nombreProduct
 	/**
 	 * @return the categoria
 	 */
-//	public Categoria getCategoria() {
-//		return categoria;
-//	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
 //
 //
 //
@@ -77,9 +78,9 @@ public Producto(Double precioProducto, String fotoProducto, String nombreProduct
 //	/**
 //	 * @param categoria the categoria to set
 //	 */
-//	public void setCategoria(Categoria categoria) {
-//		this.categoria = categoria;
-//	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
 
 

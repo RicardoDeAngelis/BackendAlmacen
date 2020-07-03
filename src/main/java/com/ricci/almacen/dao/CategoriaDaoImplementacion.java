@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 import com.ricci.almacen.model.Categoria;
+import com.ricci.almacen.model.Producto;
 
 /**
  * @author Ricardo
@@ -61,11 +62,13 @@ public class CategoriaDaoImplementacion extends AbstractSession implements Categ
 				.setParameter("nombreCategoria",nombreCategoria).uniqueResult();
 	}
 
+
+
 //	@Override
-//	public List<Categoria> buscarPorIdProducto(Long idProducto) {
+//	public List<Producto> buscarPorIdProducto(Long idProducto) {
 //		// TODO Auto-generated method stub
-//		return (List<Categoria>) getSession().createQuery(
-//				"from Categoria c join c.producto t where t.idProducto = :idProducto")
+//		return (List<Producto>) getSession().createQuery(
+//				"from  c join c.producto t where t.idProducto = :idProducto")
 //				.setParameter("idProducto", idProducto).list();
 //	}
 

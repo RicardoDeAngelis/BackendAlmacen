@@ -6,6 +6,7 @@ package com.ricci.almacen.service;
 import java.util.List;
 
 import com.ricci.almacen.model.Categoria;
+import com.ricci.almacen.model.Producto;
 
 /**
  * @author Ricardo
@@ -25,6 +26,7 @@ public interface CategoriaService {
 
 	Categoria encontrarPorNombreCategoria(String nombreCategoria);
 	
-//	List<Categoria> buscarPorIdProducto(Long idProducto);
+//	List<Producto> buscarPorIdProducto(Long idProducto);
+	
 
 }

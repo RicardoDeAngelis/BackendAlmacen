@@ -33,15 +33,15 @@ import util.CustomErrorType;
 public class ProductoController {
 
 	@Autowired
-	ProductoService _productoService;
-//	@Autowired
-//	CategoriaService _categoriaService;
+	private ProductoService _productoService;
+	@Autowired
+	private CategoriaService _categoriaService;
 
 	/**
 	 * GET
 	 *
 	 */
-	@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+	@CrossOrigin(origins = "*", methods= {RequestMethod.GET})
 	@RequestMapping(value="/productos", method = RequestMethod.GET, headers = "Accept=application/json")
 
 	public ResponseEntity<List<Producto>> getProductos(){
@@ -59,7 +59,7 @@ public class ProductoController {
 	
 	}
 	  //GET BY ID
-		@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+		@CrossOrigin(origins = "*", methods= {RequestMethod.GET})
 		@RequestMapping(value="/productos/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
 		public ResponseEntity<Producto> econtrarPorId(@PathVariable("id") Long idProducto){
 			if (idProducto == null || idProducto <= 0) {
@@ -76,7 +76,7 @@ public class ProductoController {
 		
 		
 		//CREATE
-	    @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})	
+	    @CrossOrigin(origins = "*", methods= {RequestMethod.POST})	
 	    @RequestMapping(value = "/producto", method = RequestMethod.POST, headers = "Accept=application/json")
 	    public ResponseEntity<?> guardarProductos(@RequestBody Producto producto, UriComponentsBuilder ucBuilder) {
 	        if (_productoService.encontrarPorNombre(producto.getNombreProducto()) != null) {
@@ -94,8 +94,8 @@ public class ProductoController {
 		
 		
 		//UPDATE 
-	    @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
-		@RequestMapping(value = "/productos/{id}", method = RequestMethod.PATCH)
+	    @CrossOrigin(origins = "*", methods= {RequestMethod.PATCH})
+		@RequestMapping(value = "/producto/{id}", method = RequestMethod.PATCH,headers = "Accept=application/json")
 			public ResponseEntity<?> actualizarProductos(@PathVariable("id") Long id, @RequestBody Producto producto) {
 	        
 			Producto currentProducto = _productoService.econtrarPorId(id);
@@ -109,6 +109,7 @@ public class ProductoController {
 	        currentProducto.setPrecioProducto(producto.getPrecioProducto());
 	        currentProducto.setFotoProducto(producto.getFotoProducto());
 	        currentProducto.setFechaVencimiento(producto.getFechaVencimiento());
+	        currentProducto.setCategoria(producto.getCategoria());
 
 	        
 	        _productoService.actualizarProducto(currentProducto);
@@ -116,15 +117,15 @@ public class ProductoController {
 	    }
 		
 		//DELETE
-	    @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+	    @CrossOrigin(origins = "*", methods= {RequestMethod.DELETE})
 	    @RequestMapping(value = "/producto/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
 	
 		public ResponseEntity<?> eliminarProducto(@PathVariable("id") Long id) {
-			System.out.println("Producto ID recived: " + id);
+//			System.out.println("Producto ID recived: " + id);
 	 
 			Producto producto = _productoService.econtrarPorId(id);
 	        if (producto == null) {
-	        	System.out.println("Unable to delete. Producto with id not found. " + id);
+//	        	System.out.println("Unable to delete. Producto with id not found. " + id);
 	            
 	            return new ResponseEntity(new CustomErrorType("Unable to delete. Producto with id " + id + " not found."),
 	                    HttpStatus.NOT_FOUND);
@@ -134,26 +135,29 @@ public class ProductoController {
 	    }
 		
 	
-//	  //Asignar Categoria a Producto
-//	  	@RequestMapping(value="/productos/categoria", method = RequestMethod.PATCH, headers="Accept=application/json")
-//	  	public ResponseEntity<Producto> asignarCategoriaAproducto(@RequestBody Producto producto, UriComponentsBuilder ucBuilder){
-//	  		if (producto.getIdProducto() == null || producto.getCategoria().getIdCategoria() == null) {
-//	  			return new ResponseEntity(new CustomErrorType("We need almost id_categoira and id_producto "),HttpStatus.CONFLICT);
-//	  		}
-//	  		Producto productoSaved = _productoService.econtrarPorId(producto.getIdProducto());
-//	  		if (productoSaved == null) {
-//	  			return new ResponseEntity(new CustomErrorType("The id_producto: " + producto.getIdProducto() + " not found."),HttpStatus.CONFLICT);
-//	  		}
-//	  		Categoria categoria = _categoriaService.encontrarCategoriaPorId(producto.getCategoria().getIdCategoria());
-//	  		if (categoria == null) {
-//	  			return new ResponseEntity(new CustomErrorType("The id_categoria: " + producto.getCategoria().getIdCategoria() + " not found."),HttpStatus.CONFLICT);
-//	  		}
-//			productoSaved.setCategoria(categoria);;
-//	  		_productoService.actualizarProducto(productoSaved);
-//
-//	  		return new ResponseEntity<Producto>(productoSaved, HttpStatus.OK);
-//	  	}
-//
+	  //Asignar Categoria a Producto
+	  	@RequestMapping(value="/productos/categoria", method = RequestMethod.PATCH, headers="Accept=application/json")
+	  	public ResponseEntity<Producto> asignarCategoriaAproducto(@RequestBody Producto producto, UriComponentsBuilder ucBuilder){
+	  		if (producto.getIdProducto() == null || producto.getCategoria().getIdCategoria() == null) {
+	  			return new ResponseEntity(new CustomErrorType("We need too id_categoira and id_producto "),HttpStatus.CONFLICT);
+	  		}
+	  		Producto productoSaved = _productoService.econtrarPorId(producto.getIdProducto());
+	  		if (productoSaved == null) {
+	  			return new ResponseEntity(new CustomErrorType("The id_producto: " + producto.getIdProducto() + " not found."),HttpStatus.CONFLICT);
+	  		}
+	  		Categoria categoria = _categoriaService.encontrarCategoriaPorId(producto.getCategoria().getIdCategoria());
+	  		if (categoria == null) {
+	  			return new ResponseEntity(new CustomErrorType("The id_categoria: " + producto.getCategoria().getIdCategoria() + " not found."),HttpStatus.CONFLICT);
+	  		}
+			productoSaved.setCategoria(categoria);;
+	  		_productoService.actualizarProducto(productoSaved);
+
+	  		return new ResponseEntity<Producto>(productoSaved, HttpStatus.OK);
+	  	}
+	  	
+//	  	asignar categoria a producto
+	  	
+
 	    
 	    
 }

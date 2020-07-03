@@ -25,6 +25,6 @@ public interface ProductoService {
 
 	Producto encontrarPorNombre(String name);
 
-	//List<Producto> findByIdCategoria(Long idCategoria);
+	List<Producto> findByIdCategoria(Long idCategoria );
 
 }

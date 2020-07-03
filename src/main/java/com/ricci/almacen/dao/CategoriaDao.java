@@ -30,6 +30,8 @@ public interface CategoriaDao {
 //	TeacherSocialMedia findSocialMediaByIdAndName(Long idSocialMedia, String nickname);
 //	TeacherSocialMedia findSocialMediaByIdTeacherAndIdSocialMedia(Long idTeacher, Long idSocialMedia);
 
-//	List<Categoria> buscarPorIdProducto(Long idProducto);
+//	List<Producto> buscarPorIdProducto(Long idProducto);
+	
+
 
 }

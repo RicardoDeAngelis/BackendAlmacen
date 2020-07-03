@@ -62,12 +62,13 @@ public class productoServiceImplementacion implements ProductoService {
 		return _productoDao.encontrarPorNombre(name);
 	}
 
+	@Override
+	public List<Producto> findByIdCategoria(Long idCategoria) {
+		// TODO Auto-generated method stub
+		return _productoDao.findByIdCategoria(idCategoria);
+	}
+
 	
 
-//	@Override
-//	public List<Producto> findByIdCategoria(Long idCategoria) {
-//		// TODO Auto-generated method stub
-//		return _productoDao.findByIdCategoria(idCategoria);
-//	}
 
 }

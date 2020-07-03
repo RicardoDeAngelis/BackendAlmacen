@@ -38,14 +38,14 @@ public class CategoriaController {
 	
 	@Autowired
 	 CategoriaService _categoriaService;
-//	
+	
 //	@Autowired
 //	private ProductoService _productoService;
 	/**
 	 * GET
 	 *
 	 */
-	@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+	@CrossOrigin(origins = "*", methods= {RequestMethod.GET})
 	@RequestMapping(value="/categorias", method = RequestMethod.GET, headers = "Accept=application/json")
 
 	public ResponseEntity<List<Categoria>> getCategorias(){
@@ -64,7 +64,7 @@ public class CategoriaController {
 	
 	
 	  //GET BY ID
-		@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+		@CrossOrigin(origins = "*", methods= {RequestMethod.GET})
 		@RequestMapping(value="/categoria/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
 		public ResponseEntity<Categoria> encontrarCategoriaPorId(@PathVariable("id") Long idCategoria){
 			if (idCategoria == null || idCategoria <= 0) {
@@ -83,7 +83,7 @@ public class CategoriaController {
 		
 		
 		//DELETE
-	    @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
+	    @CrossOrigin(origins = "*", methods= {RequestMethod.DELETE})
 	    @RequestMapping(value = "/categoria/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
 	
 		public ResponseEntity<?> eliminarCategoria(@PathVariable("id") Long id) {
@@ -164,7 +164,7 @@ public class CategoriaController {
 //
 //  		return new ResponseEntity<Producto>(productoSaved, HttpStatus.OK);
 //  	}
-//
+
 
 	
 }

@@ -53,8 +53,10 @@ public class CategoriaServiceImplementacion implements CategoriaService {
 		return _categoriaDao.encontrarPorNombreCategoria(nombreCategoria);
 	}
 
+	
+
 //	@Override
-//	public List<Categoria> buscarPorIdProducto(Long idProducto) {
+//	public List<Producto> buscarPorIdProducto(Long idProducto) {
 //		// TODO Auto-generated method stub
 //		return _categoriaDao.buscarPorIdProducto(idProducto);
 //	}

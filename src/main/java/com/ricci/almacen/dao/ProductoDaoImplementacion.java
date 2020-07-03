@@ -72,12 +72,34 @@ public class ProductoDaoImplementacion extends AbstractSession implements Produc
 				.setParameter("nombreProducto", nombreProducto).uniqueResult();
 	}
 
+	@Override
+	public List<Producto> findByIdCategoria(Long idCategoria ) {
+		// TODO Auto-generated method stub
+		return (List<Producto>) getSession().createQuery(
+				"from Producto c join c.categoria t where t.idCategoria = :idCategoria")
+				.setParameter("idCategoria", idCategoria).list();
+	}
+//
 //	@Override
-//	public List<Producto> findByIdCategoria(Long idCategoria) {
+//	public Producto findProductoByIdCategoriaAndIdCategoria(Long idPorducto, Long idCategoria) {
 //		// TODO Auto-generated method stub
-//		return (List<Producto>) getSession().createQuery(
-//				"from Producto c join c.categoria t where t.idCategoria = :idCategoria")
+//		
+//		List<Object[]> objects = getSession().createQuery(
+//				"from Producto tsm join tsm.categoria sm "
+//				+ "where sm.idCategoria = :idCategoria ")
 //				.setParameter("idCategoria", idCategoria).list();
+//		
+//		if (objects.size() > 0) {
+//			for (Object[] objects2 : objects) {
+//				for (Object object : objects2) {
+//					if (object instanceof Producto) {
+//						return (Producto) object;
+//					}
+//				}
+//			}
+//		}
+//		
+//		return null;
 //	}
 
 }
