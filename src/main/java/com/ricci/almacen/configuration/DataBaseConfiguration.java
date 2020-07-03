@@ -31,9 +31,9 @@ public class DataBaseConfiguration {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/almacen?serverTimezone=UTC");
-		dataSource.setUsername("almacen");
-		dataSource.setPassword("7419635");
+		dataSource.setUrl("jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_3c1505408428a6f?serverTimezone=UTC");
+		dataSource.setUsername("b473a9d1e0f25d");
+		dataSource.setPassword("5ed20b94");
 		
 		return dataSource;
 	}
