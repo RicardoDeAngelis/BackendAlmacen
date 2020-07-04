@@ -31,9 +31,9 @@ public class DataBaseConfiguration {
 	public DataSource dataSource() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_3c1505408428a6f?serverTimezone=UTC");
-		dataSource.setUsername("b473a9d1e0f25d");
-		dataSource.setPassword("5ed20b94");
+		dataSource.setUrl("jdbc:mysql://sq65ur5a5bj7flas.cbetxkdyhwsb.us-east-1.rds.amazonaws.com/rs618ebzmv3nu3qo?serverTimezone=UTC");
+		dataSource.setUsername("hfk6s5ofh7782uqz");
+		dataSource.setPassword("e9areh2o6e8r9y3v");
 		
 		return dataSource;
 	}

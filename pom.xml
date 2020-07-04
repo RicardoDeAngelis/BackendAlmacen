@@ -16,7 +16,9 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
-	<!-- <packaging>war</packaging>  -->
+	<!--  generacion de un war
+	<packaging>war</packaging>
+	  -->
 	
 	
 	<dependencies>
